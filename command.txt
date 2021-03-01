@@ -1,0 +1,33 @@
+
+
+
+composer require spiral/roadrunner-laravel
+
+php ./artisan vendor:publish --provider='Spiral\RoadRunnerLaravel\ServiceProvider' --tag=config
+
+php ./artisan vendor:publish --provider='Spiral\RoadRunnerLaravel\ServiceProvider' --tag=rr-config
+
+./vendor/bin/rr get
+
+./rr -c ./.rr.yaml serve -d
+
+
+
+
+composer require dcat/laravel-admin:"2.*" -vvv
+
+php artisan admin:publish
+
+php artisan admin:install
+
+
+
+start "websockets" /abovenormal php artisan websockets:serve
+start "mysql" /abovenormal ".\server\mysql-5.7\bin\mysqld"
+start "redis" /abovenormal ".\server\redis\redis-server.exe"
+
+composer require enlightn/enlightn
+
+php artisan vendor:publish --tag=enlightn
+
+php artisan enlightn
